@@ -45,10 +45,10 @@ connectDB();
     price:Number,
     count:Number,
     decsription:String,
-    image: {
-    data: Buffer,
-    contentType: String
-  }
+  //   image: {
+  //   data: Buffer,
+  //   contentType: String
+  // }
 
     
    }
@@ -85,10 +85,10 @@ const upload = multer({ storage: storage });
           price:req.body.price,
           count:req.body.count,
           decsription:req.body.decsription,
-      image: {
-        data: fs.readFileSync(path.join(__dirname + '/images/' + req.file.filename)),
-        contentType: ['image/png','image/jpg']
-      }
+      // image: {
+      //   data: fs.readFileSync(path.join(__dirname + '/images/' + req.file.filename)),
+      //   contentType: ['image/png','image/jpg']
+      // }
         
         });
         res.json(value);
@@ -177,21 +177,8 @@ const upload = multer({ storage: storage });
           ]
          });
          res.send(data);
-      
-      
-    }); app.get('/search/:key',async(req,res)=>{
-      console.log(req.params.key);
-       
-        let data=await products.find({
-          "$or":[
-            {name:{$regex:req.params.key}},
-            {price:{$regex:req.params.key}}
-          ]
-         });
-         res.send(data);
-      
-      
-    });
+  
+    }); 
 const port = process.env.PORT || 4000;
 
 app.listen(port,()=>{
